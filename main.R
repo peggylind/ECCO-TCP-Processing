@@ -18,5 +18,10 @@ verseDataList <- identifyFromXML(xmldataDirectory)
 # create corpus from text files
 eccotcpCorpus <- createCorpus(verseDataList)
 
+source(here("scripts","eccoextract.R")) 
+eccotcpTextExtracted <- eccoextract(directory)
+# we could write those texts to file (but maybe need some cleaning)
+# for example
+write_lines(eccotcpTextExtracted[[1]], path = "test.txt")
 
 # Part 2: Create topicmodel
