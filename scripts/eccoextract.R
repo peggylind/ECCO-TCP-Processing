@@ -7,15 +7,10 @@ eccoextract <- function(directory) {
   
   #loops through the xml files
   for (i in 1:length(files_list)) {
-    x <- files_list[i]
-    dumFun <- function(x){
-      xname <- xmlName(x)
-      xattrs <- xmlAttrs(x)
-      c(sapply(xmlChildren(x), xmlChildren), name = xname, xattrs, xpathorigin = files_list[i])
-    }
+    #read xml file
     dum <- xmlParse(files_list[i])
-    
-    out[[i]] <- t(xpathSApply(dum, "//*/TEXT", dumFun))
+    #extract TEXT node
+    out[i] <- unlist(xpathApply(dum, '//*/TEXT', xmlValue))
   }
-  out
+  return(out)
 }
