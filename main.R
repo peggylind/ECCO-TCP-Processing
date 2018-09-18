@@ -13,7 +13,14 @@ options(stringsAsFactors = FALSE)
 # Part 1: Prepare metadata and text
 source(here("scripts","loadData.R")) 
 xmldataDirectory <- "xml"
-# parse the xml data and create list
+
+
+#create some base data L vs P 
+baseData <- create_baseDatafromXML(xmldataDirectory)
+plot(baseData$sum, baseData$ratio)
+
+
+# next step: parse the xml data and create list
 verseDataList <- identifyFromXML(xmldataDirectory)
 # create corpus from text files
 eccotcpCorpus <- createCorpus(verseDataList)
